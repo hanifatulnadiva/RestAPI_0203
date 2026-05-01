@@ -42,4 +42,23 @@ class AuthRepository {
       rethrow;
     }
   }
+
+  Future<void> register(String username, String email, String password)async{
+    final response = await http.post(
+      Uri.parse('$baseUrl/auth/register'),
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      },
+      body: jsonEncode({
+        'username':username,
+        'email':email,
+        'password':password,
+      }),
+    );
+    if(response.statusCode!=201 && response.statusCode!=200){
+      final data =jsonDecode(response.body);
+      throw data['message'] ??'Gagal register';
+    }
+  }
 }
