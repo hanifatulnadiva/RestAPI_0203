@@ -148,7 +148,27 @@ class _AddHewanPageState extends State<AddHewanPage> {
                       ),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 16),
+                _buildGlassTextField(
+                  controller: _hargaController,
+                  hint: "Harga (Rp)",
+                  icon: Icons.attach_money,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Harga wajib diisi';
+                    }
+                    if (double.tryParse(value) == null) {
+                      return 'Masukkan angka';
+                    }
+                    if (double.parse(value) <= 0) {
+                      return 'Harga harus lebih dari 0';
+                    }
+                    return null;
+                  },
+                ),
+
 
               )
             ],
