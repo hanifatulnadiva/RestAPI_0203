@@ -101,6 +101,55 @@ class _AddHewanPageState extends State<AddHewanPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 16,),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _buildGlassTextField(
+                        controller: _tanggalLahirController,
+                        hint: "Tanggal Lahir",
+                        icon: Icons.calendar_today_outlined,
+                        readOnly: true,
+                        onTap: () async {
+                          DateTime today = DateTime.now();
+
+                          DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: today,
+                            firstDate: DateTime(2000),
+                            lastDate: today,
+                          );
+                          if (pickedDate != null) {
+                          _tanggalLahirController.text =
+                              "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                          }
+                        },
+                        validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Tanggal lahir wajib diisi';
+                        }
+
+                        try {
+                          List<String> parts = value.split('/');
+                          DateTime inputDate = DateTime(
+                            int.parse(parts[2]),
+                            int.parse(parts[1]),
+                            int.parse(parts[0]),
+                          );
+
+                          if (inputDate.isAfter(DateTime.now())) {
+                            return 'Tidak boleh melebihi hari ini';
+                          }
+                        } catch (e) {
+                          return 'Format tanggal tidak valid';
+                        }
+                        return null;
+                        },
+                      ),
+                    ),
+                  ],
+                )
+
               )
             ],
           ),
