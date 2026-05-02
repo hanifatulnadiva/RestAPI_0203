@@ -168,8 +168,24 @@ class _AddHewanPageState extends State<AddHewanPage> {
                     return null;
                   },
                 ),
-
-
+                const SizedBox(height: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Status",
+                      style: TextStyle(color: Colors.white70),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        _buildStatusButton('Tersedia'),
+                        const SizedBox(width: 10),
+                        _buildStatusButton('Terjual'),
+                      ],
+                    ),
+                  ],
+                ),
               )
             ],
           ),
