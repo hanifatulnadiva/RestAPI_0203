@@ -233,5 +233,37 @@ class _AddHewanPageState extends State<AddHewanPage> {
       ),
     );
   }
-  
+  Widget _buildStatusButton(String status) {
+    bool isSelected = _selectedStatus == status;
+
+    return Expanded(
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            _selectedStatus = status;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: isSelected
+              ? Colors.green
+              : Colors.white.withOpacity(0.2),
+          foregroundColor: Colors.white,
+          elevation: isSelected ? 5 : 0,
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+            side: BorderSide(
+              color: isSelected
+                  ? Colors.green
+                  : Colors.white.withOpacity(0.3),
+            ),
+          ),
+        ),
+        child: Text(
+          status,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
 }
