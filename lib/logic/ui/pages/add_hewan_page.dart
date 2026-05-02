@@ -88,7 +88,19 @@ class _AddHewanPageState extends State<AddHewanPage> {
                     return 'nama minimal 2 karakter';
                   }
                   return null;
-                }
+                },
+                const SizedBox(height: 16),
+                _buildGlassTextField(
+                  controller: _jenisController,
+                  hint: "Jenis Hewan (Kucing, Sapi, dll)",
+                  icon: Icons.category_outlined,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Jenis hewan tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
               )
             ],
           ),
