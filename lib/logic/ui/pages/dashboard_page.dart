@@ -137,4 +137,57 @@ class DashboardPage extends StatelessWidget {
       )
     );
   }
+  Widget _buildGlassCard(BuildContext context, dynamic hewan) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      child: ClipRRect(
+        borderRadius:BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 101),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.white.withOpacity(0.2)),
+            ),
+            child: ListTile(
+              onTap: () {
+                final bloc = context.read<HewanBloc>();
+                Navigator.push(context, 
+                  MaterialPageRoute(
+                    builder: (innerContext)=>BlocProvider.value(
+                      value:bloc,
+                      child: EditHomePage(hewan : hewan),
+                    )
+                  )
+                );
+              },
+              leading: CircleAvatar(
+                backgroundColor: Colors.white.withOpacity(0.2),
+                child: const Icon(Icons.pets, color: Colors.white, ),
+              ),
+              title: Text(
+                hewan.nama,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                '${hewan.jenis} - ${hewan.status}',
+                style: TextStyle(color: Colors.white70),
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
+                onPressed: () => _showDeleteDialog(context, hewan),
+              ),
+            )
+          ),
+        ),
+      ),
+    );
+  }
+
+  
 }
