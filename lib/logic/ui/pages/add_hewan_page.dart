@@ -49,6 +49,36 @@ class _AddHewanPageState extends State<AddHewanPage> {
           end: Alignment.bottomCenter,
           ),
         ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.15),
+
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.pets,
+                  size: 50,
+                  color:Colors.white,
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Text(
+                "Lengkapi informasi hewan dibawah ini",
+                style:TextStyle(
+                  color:Colors.white.withOpacity(0.7),
+                  fontSize: 14,
+                ),
+              ),
+            
+            ],
+          ),
+        ),
       ),
     );
   }
