@@ -29,6 +29,17 @@ class _AddHewanPageState extends State<AddHewanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: const Text(
+          "Tambah Hewan",
+          style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color:Colors.white),
+      ),
+    );
   }
 }
