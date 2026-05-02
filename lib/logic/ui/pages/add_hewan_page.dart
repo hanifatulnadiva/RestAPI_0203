@@ -75,11 +75,11 @@ class _AddHewanPageState extends State<AddHewanPage> {
                   fontSize: 14,
                 ),
               ),
-              const SizedBox(height: 30,),
+              const SizedBox(height: 30),
               _buildGlassTextField(
                 controller:_namaController,
                 hint:"Nama Hewan",
-                Icon(Icons.badge_outlined),
+                icon:Icons.badge_outlined,
                 validator:(value){
                   if(value==null||value.isEmpty){
                     return 'nama hewan tidak boleh kosong';
@@ -89,7 +89,8 @@ class _AddHewanPageState extends State<AddHewanPage> {
                   }
                   return null;
                 },
-                const SizedBox(height: 16),
+              ),
+              const SizedBox(height: 16),
                 _buildGlassTextField(
                   controller: _jenisController,
                   hint: "Jenis Hewan (Kucing, Sapi, dll)",
@@ -186,11 +187,51 @@ class _AddHewanPageState extends State<AddHewanPage> {
                     ),
                   ],
                 ),
-              )
             ],
           ),
         ),
       ),
     );
   }
+  Widget _buildGlassTextField({
+    required TextEditingController controller,
+    required String hint,
+    required IconData icon,
+    TextInputType? keyboardType,
+    String? Function(String?)? validator,
+    int maxLines = 1,
+    bool readOnly=false,
+    VoidCallback? onTap,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.1),
+          width: 1,
+        ),
+      ),
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        validator: validator,
+        maxLines: maxLines,
+        style: const TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5)),
+          prefixIcon: Icon(icon, color: Colors.white70),
+          border: InputBorder.none,
+          errorStyle: const TextStyle(
+            color: Colors.yellowAccent,
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+          contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        ),
+      ),
+    );
+  }
+  
 }
