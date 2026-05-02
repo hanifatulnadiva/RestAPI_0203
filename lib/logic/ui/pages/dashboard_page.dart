@@ -218,4 +218,13 @@ class DashboardPage extends StatelessWidget {
       ),
     );
   }
+
+  void _showSnackBar(BuildContext context, String msg, Color color) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: color,
+      ),
+    );
+  }
 }
