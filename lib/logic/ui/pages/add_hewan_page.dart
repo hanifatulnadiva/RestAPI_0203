@@ -75,7 +75,21 @@ class _AddHewanPageState extends State<AddHewanPage> {
                   fontSize: 14,
                 ),
               ),
-            
+              const SizedBox(height: 30,),
+              _buildGlassTextField(
+                controller:_namaController,
+                hint:"Nama Hewan",
+                Icon(Icons.badge_outlined),
+                validator:(value){
+                  if(value==null||value.isEmpty){
+                    return 'nama hewan tidak boleh kosong';
+                  }
+                  if (value.length<2){
+                    return 'nama minimal 2 karakter';
+                  }
+                  return null;
+                }
+              )
             ],
           ),
         ),
