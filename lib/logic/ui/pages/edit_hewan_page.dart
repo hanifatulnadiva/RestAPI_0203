@@ -125,7 +125,112 @@ class _EditHomePageState extends State<EditHomePage> {
                         ),
                         const SizedBox(height: 32),
 
-                
+                        _buildGlassTextField(
+                          controller: _namaController,
+                          hint: "Nama",
+                          icon: Icons.badge_outlined,
+                          validator: (val) => val == null || val.isEmpty ? 'Nama wajib diisi' : null,
+                        ),
+                        const SizedBox(height: 16),
+
+                        _buildGlassTextField(
+                          controller: _jenisController,
+                          hint: "Jenis (misal: kucing)",
+                          icon: Icons.category_outlined, 
+                          validator: (val) => val == null || val.isEmpty ? 'Jenis wajib diisi' : null,
+                        ),
+                        const SizedBox(height: 16),
+
+                        _buildGlassTextField(
+                          controller: _tanggalLahirController,
+                          hint: "Tanggal Lahir",
+                          icon: Icons.calendar_today_outlined,
+                          readOnly: true,
+                          onTap: () async {
+                            DateTime today = DateTime.now();
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: today,
+                              firstDate: DateTime(2000),
+                              lastDate: today,
+                            );
+                            if (pickedDate != null) {
+                              _tanggalLahirController.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                            }
+                          },
+                          validator: (val) => val == null || val.isEmpty ? 'Tanggal lahir wajib diisi' : null,
+                        ),
+                        const SizedBox(height: 16),
+
+                        _buildGlassTextField(
+                          controller: _hargaController,
+                          hint: "Harga",
+                          icon: Icons.attach_money,
+                          keyboardType: TextInputType.number,
+                          validator: (val) => val == null || val.isEmpty ? 'Harga wajib diisi' : null,
+                        ),
+                        const SizedBox(height: 24),
+
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Status",
+                            style: TextStyle(color: Colors.white70, fontSize: 14),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        
+                        Row(
+                          children: [
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => setState(() => _selectedStatus = 'Tersedia'),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: _selectedStatus == 'Tersedia' 
+                                        ? const Color(0xFF4CAF50)
+                                        : Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                      color: _selectedStatus == 'Tersedia' 
+                                          ? Colors.transparent 
+                                          : Colors.white.withOpacity(0.2),
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: Text('Tersedia', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => setState(() => _selectedStatus = 'Terjual'),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(vertical: 16),
+                                  decoration: BoxDecoration(
+                                    color: _selectedStatus == 'Terjual' 
+                                        ? const Color(0xFF9C4D82) 
+                                        : Colors.white.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(15),
+                                    border: Border.all(
+                                      color: _selectedStatus == 'Terjual' 
+                                          ? Colors.transparent 
+                                          : Colors.white.withOpacity(0.2),
+                                    ),
+                                  ),
+                                  child: const Center(
+                                    child: Text('Terjual', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
+
                       ],
                     ),
                   ),
