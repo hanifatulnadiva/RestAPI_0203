@@ -5,12 +5,14 @@ import 'package:lottie/lottie.dart';
 import 'package:restapi/data/repositories/hewan_repository.dart';
 import 'package:restapi/logic/bloc/auth/auth_bloc.dart';
 import 'package:restapi/logic/bloc/auth/auth_event.dart';
+import 'package:restapi/logic/bloc/auth/auth_state.dart';
 import 'package:restapi/logic/bloc/hewan/hewan_bloc.dart';
 import 'package:restapi/logic/bloc/hewan/hewan_event.dart';
 import 'package:restapi/logic/bloc/hewan/hewan_state.dart';
 import 'package:restapi/logic/ui/pages/add_hewan_page.dart';
 import 'package:restapi/logic/ui/pages/edit_hewan_page.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
+import 'package:restapi/logic/ui/pages/login_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -20,6 +22,11 @@ class DashboardPage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           HewanBloc(repository: HewanRepository())..add(FetchHewan()),
+      child:BlocListener<AuthBloc, AuthState>(listener: (context, state){
+        if(state is Unauthenticated){
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const LoginPage()), (route)=>false);
+        }
+      },
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -61,13 +68,13 @@ class DashboardPage extends StatelessWidget {
               builder: (context, state) {
               if (state is HewanLoading) {
                 return Center(
-                  child: Image.asset('assets/loading.json', width: 200),
+                  child: Lottie.asset('assets/loading.json', width: 200),
                 );
               } else if (state is HewanLoaded) {
                 if (state.hewanList.isEmpty) {
                   return const Center(
                     child: Text(
-                      'Belum ada kalandi.',
+                      'Belum ada koleksi',
                       style: TextStyle(color: Colors.white70),
                     ),
                   );
@@ -134,7 +141,7 @@ class DashboardPage extends StatelessWidget {
           child: const Icon(Icons.add, color: Colors.white),
         ),
       ),
-      )
+      ))
     );
   }
   Widget _buildGlassCard(BuildContext context, dynamic hewan) {
