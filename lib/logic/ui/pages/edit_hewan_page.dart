@@ -104,8 +104,33 @@ class _EditHomePageState extends State<EditHomePage> {
                   );
                 }
               },
-              builder: (context,state){},
-              
+              builder: (context, state) {
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.white.withOpacity(0.15),
+                          child: const Icon(Icons.pets, size: 40, color: Colors.white),
+                        ),
+                        const SizedBox(height: 16),
+                        
+                        const Text(
+                          "Ubah informasi hewan dibawah ini",
+                          style: TextStyle(color: Colors.white70, fontSize: 14),
+                        ),
+                        const SizedBox(height: 32),
+
+                
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
