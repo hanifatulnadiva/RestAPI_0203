@@ -90,7 +90,24 @@ class _EditHomePageState extends State<EditHomePage> {
             ),
           ),
 
-          
+          SafeArea(
+            child: BlocConsumer<HewanBloc, HewanState>(
+              listener: (context, state) {
+                if (state is HewanCreatedSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Data berhasil diperbarui!'), backgroundColor: Colors.green),
+                  );
+                  Navigator.pop(context); 
+                } else if (state is HewanError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.message), backgroundColor: Colors.redAccent),
+                  );
+                }
+              },
+              builder: (context,state){},
+              
+            ),
+          ),
         ],
       ),
     );
