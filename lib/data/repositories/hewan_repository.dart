@@ -11,9 +11,9 @@ class HewanRepository {
     final token =await storage.getToken();
     final response =await http.get(
       Uri.parse('$baseUrl/hewan'),
-      headers:{
-        'Authorizonation':'Bearer $token', 
-        'Accept':'application/json'
+      headers:{ 
+        'Accept':'application/json',
+        'Authorization':'Bearer $token',
       },
     );
     if(response.statusCode==200){
@@ -31,7 +31,7 @@ class HewanRepository {
       Uri.parse('$baseUrl/hewan'),
       headers: {
         'Content-Type':'application/json',
-        'Authorizonation':'Bearer $token', 
+        'Authorization':'Bearer $token', 
         'Accept':'application/json'
         },
         body:jsonEncode(hewanData)
@@ -48,7 +48,7 @@ class HewanRepository {
       headers:{
         'Content-Type':'application/json',
         'Accept':'application/json',
-        'Authorizonation':'Bearer $token', 
+        'Authorization':'Bearer $token', 
       },
       body: jsonEncode(hewanData)
     );
@@ -63,7 +63,7 @@ class HewanRepository {
       Uri.parse('$baseUrl/hewan/$id'),
       headers:{
         'Accept':'application/json',
-        'Authorizonation':'Bearer $token'
+        'Authorization':'Bearer $token'
       },
     );
     if(response.statusCode!=200 && response.statusCode!=204){

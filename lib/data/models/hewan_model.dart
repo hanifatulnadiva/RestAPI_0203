@@ -20,7 +20,7 @@ class HewanModel{
       id: json['id'],
       nama: json['nama'], 
       jenis: json['jenis'], 
-      tanggalLahir: json['tanggalLahir'],
+      tanggalLahir: json['tanggal_lahir'],
        harga: json['harga'], 
        status: json['status']
     );
