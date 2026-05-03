@@ -78,7 +78,21 @@ class _EditHomePageState extends State<EditHomePage> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
-      
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF1A237E), Color(0xFF4D1457)],
+              ),
+            ),
+          ),
+
+          
+        ],
+      ),
     );
   }
 
