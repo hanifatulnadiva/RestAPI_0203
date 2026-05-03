@@ -231,6 +231,28 @@ class _EditHomePageState extends State<EditHomePage> {
                         ),
                         const SizedBox(height: 40),
 
+                        state is HewanLoading
+                          ? Center(
+                              child: Lottie.asset('assets/loading.json', width: 100, height: 100),
+                            )
+                          : SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: ElevatedButton(
+                              onPressed: _submitForm,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFD08FD8), 
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                elevation: 5,
+                              ),
+                              child: const Text(
+                                "Simpan",
+                                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                       ],
                     ),
                   ),
